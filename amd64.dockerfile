@@ -47,13 +47,19 @@
                 libressl \
                 mariadb-dev \
                 mariadb-client \
-                zlib;
+                zlib \
+                curl;
 
     # :: copy root filesystem changes
         COPY ./rootfs /
 
 # :: Volumes
 	VOLUME ["/kea/etc"]
+
+# :: Monitor
+    RUN set -ex; chmod +x /usr/local/bin/healthcheck.sh
+    RUN set -ex; chmod +x /usr/local/bin/status-get
+    HEALTHCHECK --interval=5s --timeout=2s CMD /usr/local/bin/healthcheck.sh || exit 1
 
 # :: Start
 	RUN set -ex; chmod +x /usr/local/bin/entrypoint.sh
