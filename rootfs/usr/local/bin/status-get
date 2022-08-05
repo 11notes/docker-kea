@@ -1,2 +1,0 @@
-#!/bin/ash
-curl -s -X POST -H 'Content-Type: application/json' -d '{"command": "status-get", "service": [ "dhcp4" ]}' 127.0.0.1:8080
