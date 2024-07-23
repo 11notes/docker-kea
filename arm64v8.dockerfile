@@ -1,6 +1,3 @@
-# :: QEMU
-  FROM multiarch/qemu-user-static:x86_64-aarch64 as qemu
-
 # :: Util
   FROM alpine as util
 
@@ -11,11 +8,12 @@
 
 # :: Build
   FROM --platform=linux/arm64 11notes/alpine:arm64v8-stable as build
-  COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
   ENV BUILD_VERSION=2.6.0
   ENV BUILD_DIR=/kea
 
   USER root
+
+  RUN ls;
 
   RUN set -ex; \
     apk add --no-cache --update \
@@ -69,7 +67,6 @@
 
 # :: Header
   FROM --platform=linux/arm64 11notes/alpine:arm64v8-stable
-  COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
   COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
   COPY --from=build /opt/kea /opt/kea
   ENV APP_NAME="kea"
