@@ -1,3 +1,6 @@
+# :: QEMU
+  FROM multiarch/qemu-user-static:x86_64-aarch64 as qemu
+
 # :: Util
   FROM alpine as util
 
@@ -7,7 +10,8 @@
     git clone https://github.com/11notes/util.git;
 
 # :: Build
-  FROM 11notes/alpine:stable as build
+  FROM --platform=linux/arm64 11notes/alpine:arm64v8-stable as build
+  COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
   ENV BUILD_VERSION=2.6.0
   ENV BUILD_DIR=/kea
 
@@ -65,7 +69,8 @@
     make install-strip;
 
 # :: Header
-  FROM 11notes/alpine:stable
+  FROM --platform=linux/arm64 11notes/alpine:arm64v8-stable
+  COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin
   COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
   COPY --from=build /opt/kea /opt/kea
   ENV APP_NAME="kea"
@@ -103,7 +108,7 @@
       setcap cap_net_bind_service,cap_net_raw=+ep /opt/kea/sbin/kea-dhcp4;
 
 # :: Volumes
-  VOLUME ["${APP_ROOT}/etc","${APP_ROOT}/var"]
+  VOLUME ["${APP_ROOT}/etc", "${APP_ROOT}/var"]
 
 # :: Monitor
   HEALTHCHECK CMD /usr/local/bin/healthcheck.sh || exit 1
