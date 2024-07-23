@@ -13,10 +13,9 @@
 
   USER root
 
-  RUN ls;
-
   RUN set -ex; \
     apk add --no-cache --update \
+      alpine-sdk \
       openssl-dev \
       mariadb-dev \
       postgresql-dev \
