@@ -1,0 +1,11 @@
+image: 11notes/kea:2.6.0
+manifests:
+  - image: 11notes/kea:amd64-2.6.0
+    platform:
+      architecture: amd64
+      os: linux
+  - image: 11notes/kea:arm64v8-2.6.0
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8

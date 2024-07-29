@@ -3,10 +3,10 @@
 # 🏔️ Alpine - kea
 ![size](https://img.shields.io/docker/image-size/11notes/kea/2.6.0?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/kea/2.6.0?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/kea?color=2b75d6) ![stars](https://img.shields.io/docker/stars/11notes/kea?color=e6a50e) [<img src="https://img.shields.io/badge/github-11notes-blue?logo=github">](https://github.com/11notes)
 
-**Kea DHCP server**
+**Kea compiled from source with PostgreSQL and MariaDB support**
 
 # SYNOPSIS
-What can I do with this? Run Kea DHCP with your favourite lease backends.
+What can I do with this? Run Kea DHCP rootless with your favourite lease backends compiled from source and statically linked to create a small container image. All the benefits of Kea, none of the clutter from public repos 😉.
 
 # VOLUMES
 * **/kea/etc** - Directory of configuration files
