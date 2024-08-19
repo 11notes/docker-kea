@@ -8,7 +8,7 @@
 
 # :: Build
   FROM 11notes/alpine:stable as build
-  ENV BUILD_VERSION=2.6.0
+  ENV BUILD_VERSION=2.6.1
   ENV BUILD_DIR=/kea
 
   USER root
@@ -43,9 +43,7 @@
       g++ \
       git;
   RUN set -ex; \
-    git clone https://gitlab.isc.org/isc-projects/kea.git; \
-    cd ${BUILD_DIR}; \
-    git checkout Kea-${BUILD_VERSION};
+    git clone https://gitlab.isc.org/isc-projects/kea.git -b Kea-${BUILD_VERSION};
   RUN set -ex; \
     cd ${BUILD_DIR}; \
     autoreconf --install; \
@@ -84,7 +82,7 @@
         libpq-dev \
         libstdc++-dev \
         log4cplus-dev; \
-      apk --no-cache upgrade; \
+      apk --no-cache --update upgrade; \
       ln -s /opt/kea/var/run/kea ${APP_ROOT}/run;
 
   # :: copy root filesystem changes and add execution rights to init scripts
@@ -99,11 +97,12 @@
         /opt/kea \
         ${APP_ROOT};
 
+  # :: set special caps
     RUN set -ex; \
       setcap cap_net_bind_service,cap_net_raw=+ep /opt/kea/sbin/kea-dhcp4;
 
 # :: Volumes
-  VOLUME ["${APP_ROOT}/etc","${APP_ROOT}/var"]
+  VOLUME ["${APP_ROOT}/run", "${APP_ROOT}/etc","${APP_ROOT}/var"]
 
 # :: Monitor
   HEALTHCHECK CMD /usr/local/bin/healthcheck.sh || exit 1

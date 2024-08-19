@@ -1,7 +1,7 @@
 ![Banner](https://github.com/11notes/defaults/blob/main/static/img/banner.png?raw=true)
 
 # 🏔️ Alpine - kea
-![size](https://img.shields.io/docker/image-size/11notes/kea/2.6.0?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/kea/2.6.0?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/kea?color=2b75d6) ![stars](https://img.shields.io/docker/stars/11notes/kea?color=e6a50e) [<img src="https://img.shields.io/badge/github-11notes-blue?logo=github">](https://github.com/11notes)
+![size](https://img.shields.io/docker/image-size/11notes/kea/2.6.1?color=0eb305) ![version](https://img.shields.io/docker/v/11notes/kea/2.6.1?color=eb7a09) ![pulls](https://img.shields.io/docker/pulls/11notes/kea?color=2b75d6) ![stars](https://img.shields.io/docker/stars/11notes/kea?color=e6a50e) [<img src="https://img.shields.io/badge/github-11notes-blue?logo=github">](https://github.com/11notes)
 
 **Kea compiled from source with PostgreSQL and MariaDB support**
 
@@ -17,31 +17,31 @@ What can I do with this? Run Kea DHCP rootless with your favourite lease backend
 version: "3.8"
 services:
   dhcp:
-    image: "11notes/kea:2.6.0"
+    image: "11notes/kea:2.6.1"
     container_name: "kea.dhcp"
     environment:
       TZ: Europe/Zurich
     volumes:
-      - "kea-sock:/kea/run/kea.sock"
+      - "kea-run:/kea/run"
       - "kea-etc:/kea/etc"
     networks:
       dhcp:
         ipv4_address: 192.168.100.67
     restart: always
   ctrl:
-    image: "11notes/kea:2.6.0"
+    image: "11notes/kea:2.6.1"
     container_name: "kea.ctrl"
     command: ctrl
     environment:
       TZ: Europe/Zurich
     volumes:
-      - "kea-sock:/kea/run/kea.sock"
+      - "kea-run:/kea/run"
     ports:
       - "6780:6780/tcp"
     restart: always
 volumes:
   kea-etc:
-  kea-sock:
+  kea-run:
 networks:
   dhcp:
     driver: macvlan

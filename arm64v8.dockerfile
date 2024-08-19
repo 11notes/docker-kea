@@ -8,7 +8,7 @@
 
 # :: Build
   FROM --platform=linux/arm64 11notes/alpine:arm64v8-stable as build
-  ENV BUILD_VERSION=2.6.0
+  ENV BUILD_VERSION=2.6.1
   ENV BUILD_DIR=/kea
 
   USER root
@@ -84,7 +84,7 @@
         libpq-dev \
         libstdc++-dev \
         log4cplus-dev; \
-      apk --no-cache upgrade; \
+      apk --no-cache --update upgrade; \
       ln -s /opt/kea/var/run/kea ${APP_ROOT}/run;
 
   # :: copy root filesystem changes and add execution rights to init scripts
@@ -99,11 +99,12 @@
         /opt/kea \
         ${APP_ROOT};
 
+  # :: set special caps
     RUN set -ex; \
       setcap cap_net_bind_service,cap_net_raw=+ep /opt/kea/sbin/kea-dhcp4;
 
 # :: Volumes
-  VOLUME ["${APP_ROOT}/etc", "${APP_ROOT}/var"]
+  VOLUME ["${APP_ROOT}/run", "${APP_ROOT}/etc","${APP_ROOT}/var"]
 
 # :: Monitor
   HEALTHCHECK CMD /usr/local/bin/healthcheck.sh || exit 1

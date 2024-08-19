@@ -1,31 +1,31 @@
 version: "3.8"
 services:
   dhcp:
-    image: "11notes/kea:2.6.0"
+    image: "11notes/kea:2.6.1"
     container_name: "kea.dhcp"
     environment:
       TZ: Europe/Zurich
     volumes:
-      - "kea-sock:/kea/run/kea.sock"
+      - "kea-run:/kea/run"
       - "kea-etc:/kea/etc"
     networks:
       dhcp:
         ipv4_address: 192.168.100.67
     restart: always
   ctrl:
-    image: "11notes/kea:2.6.0"
+    image: "11notes/kea:2.6.1"
     container_name: "kea.ctrl"
     command: ctrl
     environment:
       TZ: Europe/Zurich
     volumes:
-      - "kea-sock:/kea/run/kea.sock"
+      - "kea-run:/kea/run"
     ports:
       - "6780:6780/tcp"
     restart: always
 volumes:
   kea-etc:
-  kea-sock:
+  kea-run:
 networks:
   dhcp:
     driver: macvlan
