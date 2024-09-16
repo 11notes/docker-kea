@@ -1,4 +1,4 @@
-version: "3.8"
+name: "kea"
 services:
   dhcp:
     image: "11notes/kea:2.6.1"
