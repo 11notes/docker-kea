@@ -13,6 +13,10 @@ services:
         ipv4_address: 192.168.100.67
     restart: always
   ctrl:
+    depends_on:
+      dhcp:
+        condition: service_healthy
+        restart: true
     image: "11notes/kea:2.6.1"
     container_name: "kea.ctrl"
     command: ctrl

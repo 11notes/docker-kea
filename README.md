@@ -14,7 +14,7 @@ What can I do with this? Run Kea DHCP rootless with your favourite lease backend
 
 # COMPOSE
 ```yaml
-version: "3.8"
+name: "kea"
 services:
   dhcp:
     image: "11notes/kea:2.6.1"
@@ -29,6 +29,10 @@ services:
         ipv4_address: 192.168.100.67
     restart: always
   ctrl:
+    depends_on:
+      dhcp:
+        condition: service_healthy
+        restart: true
     image: "11notes/kea:2.6.1"
     container_name: "kea.ctrl"
     command: ctrl
