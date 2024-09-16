@@ -35,9 +35,9 @@ services:
         restart: true
     image: "11notes/kea:2.6.1"
     container_name: "kea.ctrl"
-    command: ctrl
     environment:
       TZ: Europe/Zurich
+      KEA_BIN: ctrl
     volumes:
       - "kea-run:/kea/run"
     ports:
@@ -69,6 +69,7 @@ networks:
 | --- | --- | --- |
 | `TZ` | [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | |
 | `DEBUG` | Show debug information | |
+| `KEA_BIN` | Which binary to start (dhcp4 or not set, ctrl) |  |
 
 # PARENT IMAGE
 * [11notes/alpine:stable](https://hub.docker.com/r/11notes/alpine)

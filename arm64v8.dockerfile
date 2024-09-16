@@ -7,7 +7,7 @@
     git clone https://github.com/11notes/util.git;
 
 # :: Build
-  FROM --platform=linux/arm64 11notes/alpine:arm64v8-stable as build
+  FROM --platform=linux/arm64 11notes/alpine:stable as build
   ENV BUILD_VERSION=2.6.1
   ENV BUILD_DIR=/kea
 
@@ -72,8 +72,7 @@
   ENV APP_VERSION=2.6.1
   ENV APP_ROOT=/kea
 
-
-# :: Run
+ # :: Run
   USER root
 
   # :: prepare image
