@@ -1,6 +1,10 @@
 #!/bin/ash
   if [ -z "${1}" ]; then
-    
+    if [ -f "${APP_ROOT}/run/dhcp4.sock" ]; then
+      exit 0;
+    else
+      exit 1;
+    fi
   else
     case "${1}" in
       "ctrl")

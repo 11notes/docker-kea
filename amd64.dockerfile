@@ -77,14 +77,14 @@
     RUN set -ex; \
       mkdir -p ${APP_ROOT}/etc; \
       mkdir -p ${APP_ROOT}/var; \
+      mkdir -p ${APP_ROOT}/run; \
       apk add --no-cache --update \
         libcap \
         mariadb-connector-c \
         libpq-dev \
         libstdc++-dev \
         log4cplus-dev; \
-      apk --no-cache --update upgrade; \
-      ln -s /opt/kea/var/run/kea ${APP_ROOT}/run;
+      apk --no-cache --update upgrade;
 
   # :: copy root filesystem changes and add execution rights to init scripts
     COPY ./rootfs /
