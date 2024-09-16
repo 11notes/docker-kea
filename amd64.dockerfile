@@ -106,7 +106,7 @@
   VOLUME ["${APP_ROOT}/run", "${APP_ROOT}/etc","${APP_ROOT}/var"]
 
 # :: Monitor
-  HEALTHCHECK CMD /usr/local/bin/healthcheck.sh || exit 1
+  HEALTHCHECK --interval=5s --timeout=2s CMD /usr/local/bin/healthcheck.sh || exit 1
 
 # :: Start
   USER docker
