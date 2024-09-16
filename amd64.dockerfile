@@ -67,6 +67,7 @@
   COPY --from=util /util/linux/shell/elevenLogJSON /usr/local/bin
   COPY --from=build /opt/kea /opt/kea
   ENV APP_NAME="kea"
+  ENV APP_VERSION=2.6.1
   ENV APP_ROOT=/kea
 
 # :: Run
