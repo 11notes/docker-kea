@@ -1,0 +1,15 @@
+{
+  "image": "11notes/kea",
+  "name": "kea",
+  "root": "/kea",
+  "semver": {
+    "version": "3.1.9"
+  },
+  "readme": {
+    "description": "run kea dhcp rootless.",
+    "introduction": "Kea provides DHCPv4 servers.",
+    "built": {
+      "kea": "https://gitlab.isc.org/isc-projects/kea"
+    }
+  }
+}

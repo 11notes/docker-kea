@@ -1,0 +1,29 @@
+name: "kea"
+
+x-lockdown: &lockdown
+  # prevents write access to the image itself
+  read_only: true
+
+services:
+  dhcp4:
+    image: "11notes/kea:3.1.9"
+    <<: *lockdown
+    environment:
+      TZ: "Europe/Zurich"
+    networks:
+      backend:
+    volumes:
+      - "dhcp4.etc:/kea/etc"
+      - "dhcp4.var:/kea/var"
+    tmpfs:
+      # needed for read-only
+      - "/kea/run:uid=1000,gid=1000,mode=0700"
+    restart: "always"
+
+volumes:
+  dhcp4.etc:
+  dhcp4.var:
+
+networks:
+  backend:
+    internal: true
