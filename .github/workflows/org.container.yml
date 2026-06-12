@@ -343,6 +343,7 @@ jobs:
               const arguments = [];
               for(const argument in docker.app){
                 arguments.push(`APP_${argument.toUpperCase()}=${docker.app[argument]}`);
+                core.exportVariable(`APP_${argument.toUpperCase()}`, `${docker.app[argument]}`);
               }
 
             // export to environment
