@@ -1,4 +1,4 @@
-name: "integration"
+name: "${NAME}"
 
 x-lockdown: &lockdown
   # prevents write access to the image itself
@@ -17,7 +17,7 @@ services:
       - "dhcp4.var:/kea/var"
     tmpfs:
       # needed for read-only
-      - "/kea/run:uid=1000,gid=1000,mode=0700"
+      - "/kea/run:uid=${APP_UID},gid=${APP_GID},mode=0700"
     restart: "always"
 
 volumes:

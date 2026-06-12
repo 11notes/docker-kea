@@ -535,7 +535,7 @@ jobs:
         if: hashFiles('./.github/tests/integration/compose.yml') != ''
         run: |
           cd ./.github/tests/integration
-          IMAGE="${{ env.DOCKER_CACHE_GRYPE }}" docker compose up -d
+          NAME="integration" IMAGE="${{ env.DOCKER_CACHE_GRYPE }}" APP_UID="${{ env.APP_UID }}" APP_GID="${{ env.APP_GID }}" docker compose up -d
           echo "waiting for container startup (max 60s) ..."
           for TRY in $(seq 1 12); do
             HEALTH=$(docker inspect --format='{{json .State.Health}}' integration-main-1 | jq -r '.Status')
