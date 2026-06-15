@@ -11,6 +11,7 @@ ${{ github:> }}* ... this image is automatically scanned for CVEs before and aft
 ${{ github:> }}* ... this image is created via a secure and pinned CI/CD process
 ${{ github:> }}* ... this image runs a basic integration test before it will be published (or not if it fails)
 ${{ github:> }}* ... this image will automatically create self-signed SSL certificates for the socket connection
+${{ github:> }}* ... this image supports [inline configs](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)
 
 If you value security, simplicity and optimizations to the extreme, then this image might be for you.
 
@@ -24,6 +25,8 @@ ${{ content_compose }}
 ${{ content_defaults }}
 
 ${{ content_environment }}
+| `KEA_CONFIG` *(optional)* | Will overwrite the default config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
+| `KEA_SUBNETS_CONFIG` *(optional)* | Will overwrite only the default subnets config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
 
 ${{ content_source }}
 
