@@ -24,6 +24,7 @@ Kea provides DHCPv4 servers.
 >* ... this image is created via a secure and pinned CI/CD process
 >* ... this image runs a basic integration test before it will be published (or not if it fails)
 >* ... this image will automatically create self-signed SSL certificates for the socket connection
+>* ... this image supports [inline configs](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)
 
 If you value security, simplicity and optimizations to the extreme, then this image might be for you.
 
@@ -79,6 +80,8 @@ To find out how you can change the default UID/GID of this container image, cons
 | --- | --- | --- |
 | `TZ` | [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | |
 | `DEBUG` | Will activate debug option for container image and app (if available) | |
+| `KEA_CONFIG` *(optional)* | Will overwrite the default config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
+| `KEA_SUBNETS_CONFIG` *(optional)* | Will overwrite only the default subnets config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
 
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
@@ -123,4 +126,4 @@ This image supports nobody by default. Simply add **-nobody** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-kea/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-kea/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-kea/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 12.06.2026, 07:34:34 (CET)*
+*created 15.06.2026, 08:52:54 (CET)*
