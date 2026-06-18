@@ -47,8 +47,7 @@ services:
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
-    networks:
-      backend:
+    network_mode: "host"
     volumes:
       - "dhcp4.etc:/kea/etc"
       - "dhcp4.var:/kea/var"
@@ -60,10 +59,6 @@ services:
 volumes:
   dhcp4.etc:
   dhcp4.var:
-
-networks:
-  backend:
-    internal: true
 ```
 To find out how you can change the default UID/GID of this container image, consult the [RTFM](https://github.com/11notes/RTFM/blob/main/linux/container/image/11notes/how-to.changeUIDGID.md#change-uidgid-the-correct-way).
 
@@ -82,6 +77,7 @@ To find out how you can change the default UID/GID of this container image, cons
 | `DEBUG` | Will activate debug option for container image and app (if available) | |
 | `KEA_CONFIG` *(optional)* | Will overwrite the default config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
 | `KEA_SUBNETS_CONFIG` *(optional)* | Will overwrite only the default subnets config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
+| `KEA_INTERFACES` *(optional)* | JSON array data type of interfaces to bind kea to, defaults to all interfaces | ["*"] |
 
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
@@ -126,4 +122,4 @@ This image supports nobody by default. Simply add **-nobody** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-kea/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-kea/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-kea/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 15.06.2026, 08:52:54 (CET)*
+*created 18.06.2026, 12:11:58 (CET)*
