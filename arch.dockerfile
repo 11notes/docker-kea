@@ -131,7 +131,8 @@
     ENV KEA_CONTROL_SOCKET_DIR="/kea/run" \
         KEA_DHCP_DATA_DIR="/kea/var" \
         KEA_PIDFILE_DIR="/kea/run" \
-        KEA_LOCKFILE_DIR="/kea/run"
+        KEA_LOCKFILE_DIR="/kea/run" \
+        KEA_INTERFACES="[\"*\"]"
 
   # :: multi-stage
     COPY --from=distroless-openssl / /

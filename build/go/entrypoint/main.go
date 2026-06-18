@@ -27,6 +27,10 @@ func main(){
 	eleven.Container.EnvToFile(APP_CONFIG_ENV, APP_CONFIG)
 	eleven.Container.EnvToFile(APP_CONFIG_SUBNETS_ENV, APP_CONFIG_SUBNETS)
 
+	// overwrite env
+	eleven.Container.FileContentReplaceEnv(APP_CONFIG)
+	eleven.Container.FileContentReplaceEnv(APP_CONFIG_SUBNETS)
+
 	// start app
 	eleven.Container.RunAbsolute(APP_BIN, []string{"-c", APP_CONFIG}, []string{})
 }

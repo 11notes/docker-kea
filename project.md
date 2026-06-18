@@ -27,6 +27,7 @@ ${{ content_defaults }}
 ${{ content_environment }}
 | `KEA_CONFIG` *(optional)* | Will overwrite the default config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
 | `KEA_SUBNETS_CONFIG` *(optional)* | Will overwrite only the default subnets config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
+| `KEA_INTERFACES` *(optional)* | JSON array data type of interfaces to bind kea to, defaults to all interfaces | ["*"] |
 
 ${{ content_source }}
 
