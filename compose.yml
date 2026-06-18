@@ -10,8 +10,7 @@ services:
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
-    networks:
-      backend:
+    network_mode: "host"
     volumes:
       - "dhcp4.etc:/kea/etc"
       - "dhcp4.var:/kea/var"
@@ -23,7 +22,3 @@ services:
 volumes:
   dhcp4.etc:
   dhcp4.var:
-
-networks:
-  backend:
-    internal: true

@@ -45,9 +45,13 @@ func main(){
 	if err != nil {
 		eleven.LogFatal(err.Error())
 	}
-	if len(status) > 0 && status[0].Arguments.Sockets.Status == "ready" {
-		eleven.Log("INF", "status: %s", status[0].Arguments.Sockets.Status)
+	if len(status) > 0 {
+		if status[0].Arguments.Sockets.Status == "ready" {
+			eleven.Log("INF", "status: %s", status[0].Arguments.Sockets.Status)
+		}else{
+			eleven.LogFatal("unhealthy status received: %s", status[0].Arguments.Sockets.Status)
+		}
 	}else{
-		eleven.LogFatal("wrong or no status received from socket!")
+		eleven.LogFatal("no health status received: %#v", status)
 	}
 }
