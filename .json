@@ -3,7 +3,7 @@
   "name": "kea",
   "root": "/kea",
   "semver": {
-    "version": "3.3.2"
+    "version": "3.3.3"
   },
   "readme": {
     "description": "run kea dhcp rootless.",
