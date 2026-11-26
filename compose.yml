@@ -6,7 +6,7 @@ x-lockdown: &lockdown
 
 services:
   dhcp4:
-    image: "11notes/kea:3.3.3"
+    image: "11notes/kea:3.3.4"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
